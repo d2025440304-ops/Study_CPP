@@ -1,0 +1,25 @@
+# ===== C++ 编译产物 =====
+# 本项目用 build/ 集中存放可执行文件和调试符号
+build/
+# 单独的目标文件、静态库、动态库（万一以后用 make/cmake）
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dSYM/
+
+# ===== 可执行文件（无扩展名的常见命名）=====
+*.exe
+*.out
+
+# ===== macOS 系统文件 =====
+.DS_Store
+
+# ===== 编辑器临时文件 =====
+*.swp
+*~
+
+# 注意：.vscode/ 不忽略
+# 因为里面的 tasks.json / launch.json / c_cpp_properties.json 是项目级配置
+# 团队协作时应该统一，提交后别人 clone 下来开箱即用

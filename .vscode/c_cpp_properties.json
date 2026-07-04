@@ -1,0 +1,28 @@
+{
+  // IntelliSense 配置：影响代码补全、跳转、红波浪线
+  // 由 Microsoft C/C++ 扩展读取
+  "version": 4,
+  "configurations": [
+    {
+      "name": "Mac",
+      // 头文件搜索路径，${workspaceFolder} 表示项目根目录
+      "includePath": [
+        "${workspaceFolder}/**"
+      ],
+      "defines": [],
+      // macOS 系统框架路径
+      "macFrameworkPath": [
+        "/System/Library/Frameworks",
+        "/Library/Frameworks"
+      ],
+      // 编译器路径，macOS 上 g++ 通常是 clang++ 别名
+      "compilerPath": "/usr/bin/g++",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      // IntelliSense 模式：macOS + clang + ARM64（Apple Silicon）
+      // 若为 Intel Mac 改成 macos-clang-x64
+      "intelliSenseMode": "macos-clang-arm64",
+      "warnings": "-Wall -Wextra"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  // 调试配置：F5 启动调试
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "调试当前 C++ 文件",
+      // 使用 Microsoft C/C++ 扩展的调试器（装 C/C++ 扩展即可，无需额外扩展）
+      "type": "cppdbg",
+      "request": "launch",
+      // 调试目标：项目根 build/ 下按源码相对路径分目录存放
+      "program": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      // false 表示不停在 main 入口；想每次停在 main 改 true
+      "stopAtEntry": false,
+      // 工作目录设为源文件所在目录，方便相对路径读取文件
+      "cwd": "${fileDirname}",
+      "environment": [],
+      // false 用 VSCode 内置终端，true 弹出外部终端
+      "externalConsole": false,
+      // macOS 用 lldb 调试
+      "MIMode": "lldb",
+      // 调试前自动执行编译任务，确保调试的是最新代码
+      "preLaunchTask": "C++ 编译当前文件"
+    }
+  ]
+}

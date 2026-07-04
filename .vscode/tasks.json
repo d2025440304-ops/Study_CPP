@@ -1,0 +1,26 @@
+{
+  // 任务配置：定义 VSCode 的构建任务
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // 任务名，launch.json 的 preLaunchTask 会引用这个名字
+      "label": "C++ 编译当前文件",
+      "type": "shell",
+      // 先确保 build/ 目录存在，再调用 g++ 编译
+      // -g 生成调试信息；-O0 不优化（调试友好）；-Wall -Wextra 开启警告
+      // -std=c++17 使用 C++17 标准
+      // ${file} 当前活动窗口的文件；${fileDirname} 其所在目录；${fileBasenameNoExtension} 文件名去扩展名
+      // 输出集中到项目根的 build/，并按源码相对路径分目录存放
+      // ${workspaceFolder} 项目根；${relativeFileDirname} 源文件相对项目根的目录
+      "command": "mkdir -p \"${workspaceFolder}/build/${relativeFileDirname}\" && g++ -g -O0 -Wall -Wextra -std=c++17 \"${file}\" -o \"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\"",
+      "group": {
+        "kind": "build",
+        // 设为默认构建任务：Ctrl+Shift+B 直接执行，不弹选择菜单
+        "isDefault": true
+      },
+      // 解析 g++ 输出的错误格式，显示到 Problems 面板
+      "problemMatcher": ["$gcc"],
+      "detail": "编译当前 .cpp 文件到 build/ 子目录"
+    }
+  ]
+}
