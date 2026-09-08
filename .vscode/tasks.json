@@ -3,24 +3,34 @@
   "version": "2.0.0",
   "tasks": [
     {
-      // 任务名，launch.json 的 preLaunchTask 会引用这个名字
+      // 只编译不运行：给调试（F5）的 preLaunchTask 用
+      // 调试器会自己启动程序，不能再让任务跑一遍
       "label": "C++ 编译当前文件",
       "type": "shell",
-      // 先确保 build/ 目录存在，再调用 g++ 编译
-      // -g 生成调试信息；-O0 不优化（调试友好）；-Wall -Wextra 开启警告
-      // -std=c++17 使用 C++17 标准
-      // ${file} 当前活动窗口的文件；${fileDirname} 其所在目录；${fileBasenameNoExtension} 文件名去扩展名
-      // 输出集中到项目根的 build/，并按源码相对路径分目录存放
-      // ${workspaceFolder} 项目根；${relativeFileDirname} 源文件相对项目根的目录
       "command": "mkdir -p \"${workspaceFolder}/build/${relativeFileDirname}\" && g++ -g -O0 -Wall -Wextra -std=c++17 \"${file}\" -o \"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\"",
-      "group": {
-        "kind": "build",
-        // 设为默认构建任务：Ctrl+Shift+B 直接执行，不弹选择菜单
-        "isDefault": true
-      },
-      // 解析 g++ 输出的错误格式，显示到 Problems 面板
+      "group": { "kind": "build" },
       "problemMatcher": ["$gcc"],
-      "detail": "编译当前 .cpp 文件到 build/ 子目录"
+      "detail": "只编译，调试前用"
+    },
+    {
+      // 编译并运行：默认构建任务，Ctrl+Shift+B 触发
+      // 用 && 串联：编译成功才运行，编译失败不执行程序
+      "label": "C++ 编译并运行当前文件",
+      "type": "shell",
+      "command": "mkdir -p \"${workspaceFolder}/build/${relativeFileDirname}\" && g++ -g -O0 -Wall -Wextra -std=c++17 \"${file}\" -o \"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\" && \"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\"",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        // 不回显命令本身，输出更干净
+        "echo": false,
+        // 总是显示终端面板
+        "reveal": "always",
+        // 终端获得焦点：程序要读 stdin 时可直接输入
+        "focus": true,
+        // 多次运行共用同一终端面板，不每次新开
+        "panel": "shared"
+      },
+      "detail": "Ctrl+Shift+B 一键编译并运行"
     }
   ]
 }
