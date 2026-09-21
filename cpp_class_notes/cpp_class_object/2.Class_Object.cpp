@@ -178,44 +178,6 @@ class Stacka
 
 
 
-class stack_
-{ 
-    public:
-    //构造函数
-    stack_(int n = 4)//全缺省函数
-        : _a(nullptr), _capacity(0), _top(0)
-    {
-        if(n <= 0)
-        {
-            return;
-        }
-        _a = static_cast<int *>(malloc(sizeof(int) * n));
-        if( nullptr == _a)
-        {
-            perror("malloc fail");
-            return;
-        }
-        _capacity = n;
-        _top = 0;
-    }
-    stack_(const stack_&) = delete;
-    stack_& operator=(const stack_&) = delete;
-    //析构函数：无参数
-    ~stack_()
-    {
-        free(_a);
-        _a = nullptr;
-        _capacity = _top = 0;
-    }
-
-    private:
-    int* _a;
-    int _capacity;
-    int _top;
-};
-
-
-
 class Date
 {
     public:
@@ -234,7 +196,8 @@ class Date
     //     _day = day;
     // }
 
-    //结构函数自动调用
+    //构造函数自动调用
+    //类的默认成员函数
     Date(int year = 1,int month = 1,int day = 1)
     {
         _year = year;
@@ -242,6 +205,15 @@ class Date
         _day = day;
     }
     //不需要析构函数，没有内存的开辟
+
+    //拷贝构造函数，拷贝构造函数的参数是一个引用类型的对象
+    //拷贝构造函数的参数是一个常量引用类型的对象，防止在拷贝构造函数中修改传入的对象
+    Date(const Date& d)
+    {
+        _year = d._year;
+        _month = d._month;
+        _day = d._day;
+    }
 
     int Getyear() const
     {
@@ -295,13 +267,56 @@ private:
 
 
 
+// int main()
+// {
+//     Date d2(2026,9,2);
+//     Date d3(2026,9,3); 
+//     Date d1(d2);//拷贝构造函数
+//     cout << (d2 == d3) << endl;
+
+//     return 0;
+// }
+
+
+
+
+class stack_
+{ 
+    public:
+    //构造函数
+    stack_(int n = 4)//全缺省函数
+        : _a(nullptr), _capacity(0), _top(0)
+    {
+        if(n <= 0)
+        {
+            return;
+        }
+        _a = static_cast<int *>(malloc(sizeof(int) * n));
+        if( nullptr == _a)
+        {
+            perror("malloc fail");
+            return;
+        }
+        _capacity = n;
+        _top = 0;
+    }
+    stack_(const stack_&) = delete;
+    stack_& operator=(const stack_&) = delete ;
+    //析构函数：无参数
+    ~stack_()
+    {
+        free(_a);
+        _a = nullptr;
+        _capacity = _top = 0;
+    }
+ 
+    private:
+    int* _a;
+    int _capacity;
+    int _top;
+};
+
 int main()
 {
-    Date d1;
-    Date d2(2026,9,2);
-    Date d3(2026,9,3);
 
-    cout << (d2 == d3) << endl;
-
-    return 0;
 }
