@@ -35,7 +35,7 @@ class Stack{
         }
     }
 
-    //拷贝赋值
+    //拷贝赋值，运算符重载
     Stack& operator=(const Stack& other)
     {
         if(this != &other)
@@ -110,6 +110,7 @@ class Stack{
     T*  _a;
     size_t _size;
     size_t _capacity;
+
 };
 
 int main()
