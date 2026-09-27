@@ -22,9 +22,9 @@ class Date
     //     _day = day;
     // }
 
-    //构造函数自动调用
+    //构造函数自动调用 
     //类的默认成员函数
-    Date(int year = 1,int month = 1,int day = 1)
+    Date(int year = 1,int month = 1,int day = 1) //Date * const this,this 的指向不能变，但 this 本身可变
     {
         if(month < 1 || month > 12 || day < 1 || day > 31)
         {
@@ -45,7 +45,7 @@ class Date
     {
         _year = d._year;
         _month = d._month;
-        _day = d._day;
+        _day = d._day; 
     }
 
     //析构运算符
@@ -138,10 +138,10 @@ class Date
         return !(*this == other);
     }
 
-    int operator-(const Date&other)  const
-    {
-        return _year - other._year;
-    }
+    // int operator-(const Date&other)  const
+    // {
+    //     return _year - other._year;
+    // }
     
     Date operator-=(int days) 
     {
@@ -246,6 +246,7 @@ void test1()
 {
     Date d1(2022,9,1);
     Date d2 = d1+15;
+    //this* 不可变，权限放大，本来不能变，但传过去有变的风险
     d2 += 1;
     // 测试print函数
     cout << "测试print函数：" << endl;

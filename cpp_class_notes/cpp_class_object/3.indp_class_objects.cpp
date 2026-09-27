@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
 class A{
     public:
     void func()
@@ -18,10 +17,11 @@ int main()
     pf pff = nullptr;
     //C++规定在类里的成员函数必须要加&才能取到函数指针
     pff = &A::func;
-
     A aa;
 
     // .*操作符，用来回调类里的函数指针
     (aa.*pff)();
+
+    A().func();
     return 0;
 }

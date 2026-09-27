@@ -51,7 +51,7 @@ class Stack{
 
     void push(const T& val)
     {
-        if(_size == _capacity )
+        if(_size == _capacity)
         {
             size_t newcap = _capacity== 0 ? 4 : 2 * _capacity;
             T* _aa = new T [newcap];
