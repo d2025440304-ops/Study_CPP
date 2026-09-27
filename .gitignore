@@ -20,6 +20,7 @@ build/
 *.swp
 *~
 
-# 注意：.vscode/ 不忽略
-# 因为里面的 tasks.json / launch.json / c_cpp_properties.json 是项目级配置
-# 团队协作时应该统一，提交后别人 clone 下来开箱即用
+# ===== 隐私 / 不上传 =====
+.reasonix/
+.vscode/
+C++初阶课件/
