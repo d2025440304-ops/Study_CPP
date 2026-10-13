@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <list>
 using namespace std;
 
 string s1;
@@ -57,6 +58,7 @@ void test1()
 
 // ---------------------------范围 for----------------------------------
 
+typedef std::map<std::string,std::string>::iterator map_it;
 void test2()
 {
     int array[] = {1,2,3,4,5};
@@ -88,9 +90,80 @@ void test2()
     }
     cout << endl;
 }
-int main()
+
+void test3()
 {
-    test1();
-    test2();
+    string s1("hello_world");
+    s1[5] = 'x';
+    for(int i = 0;i<s1.size();i++)
+    {
+        cout << s1[i] << " " ;
+    }
+    cout << endl;
+
+    //字符赋值，自动迭代，自动判断结束
+    for(auto e: s1)
+    {
+        //赋值给 e,再打印 e
+        cout << e << " ";
+    }
+    cout << endl;
+
+    for(auto it = s1.begin();it<s1.end();it++)
+    {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    list<int> lt = {1,2,3,4,5,6,7};
+    auto iit = lt.begin();
+    list<int>::iterator it  = lt.begin();
+    while(it != lt.end())
+    {
+        cout << *it << " ";
+        ++it;
+    }
+    cout << endl;
+}
+
+void test4()
+{
+    int a = 1;
+    char b = 'x';
+    double x = 1.1;
+    auto c = 3.14;
+
+    cout << typeid(a).name() << endl;
+    cout << typeid(b).name() << endl;
+    cout << typeid(x).name() << endl;
+    cout << typeid(c).name() << endl;
+}
+
+
+void test5()
+{
+    string s1("hello_world");
+    for(auto it = s1.begin();it<s1.end();it++)
+    {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+
+    string::reverse_iterator itt = s1.rbegin();
+    while(itt != s1.rend())
+    {
+        cout << *itt << endl;
+        itt++; 
+    }
+    cout << endl;
+}
+
+
+int main() 
+{
+    // test1();
+    // test2(); 
+    test3();
     return 0;
 }
