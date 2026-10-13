@@ -159,11 +159,61 @@ void test5()
     cout << endl;
 }
 
+void test6_string()
+{
+    string s1("hello_world");
+    cout << s1 << endl;
+    cout << s1.size() << endl;
+    cout << s1.length() << endl;
+    cout << s1.capacity() << endl;
+    cout << s1.max_size() << endl;// 42亿9千万
+    cout << s1.empty() << endl;// 0 false 1 true
+    cout << s1[0] << endl;// 直接访问，越界不报错
+    cout << s1.at(0) << endl;// 越界报错，抛出异常
+    cout << s1.front() << endl;// 访问第一个元素
+    cout << s1.back() << endl;// 访问最后一个元素
+    cout << s1.c_str() << endl;// 以C风格的字符串形式返回
+    cout << s1.data() << endl;// 以C风格的字符串形式返回
+    cout << s1.find("world") << endl;// 查找子串,返回下标
+    cout << s1.find("world",0) << endl;// 查找子串，从指定位置开始查找，返回下标
+    cout << s1.find("world",0,3) << endl;// 查找子串，从指定位置开始查找，查找指定长度的子串，返回下标
+    cout << s1.find("world",0,5) << endl;// 查找子串，从指定位置开始查找，查找指定长度的子串，返回下标
+
+}
+
+
+void test7_string()
+{
+    //reserve 保留，预留
+    //reverse 反转，逆置
+    string s1("hello_world");
+    cout << s1 << endl;
+
+    s1.reserve(100);//预留空间，避免频繁扩容，之后的插入不会再引起容量的变化
+    
+    size_t sz = s1.capacity();
+    cout << "capacity change: " << sz << endl;
+
+    cout << "making string bigger" << endl;
+    for(int i = 0;i< 100;i++)
+    {
+        s1.push_back('x');
+        if(sz != s1.capacity())
+        {
+            sz = s1.capacity();
+            cout << "capacity change: " << sz << endl;
+        }
+    }
+}
 
 int main() 
 {
     // test1();
     // test2(); 
-    test3();
+    // test3();
+    // test4();
+    // test5();
+    // test6_string();
+    test7_string();
     return 0;
 }
