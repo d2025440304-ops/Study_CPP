@@ -93,6 +93,7 @@ void test2()
 
 void test3()
 {
+    
     string s1("hello_world");
     s1[5] = 'x';
     for(int i = 0;i<s1.size();i++)
@@ -206,14 +207,29 @@ void test7_string()
     }
 }
 
+
+void test8_string()
+{
+    string s1("hello_world");
+    cout << s1 << endl;
+
+    s1.push_back(' ');
+    s1.push_back('x');
+
+    s1.append("yz");
+    cou << s1 << endl;
+}
+
 int main() 
 {
-    // test1();
+        // test1();
     // test2(); 
     // test3();
     // test4();
     // test5();
     // test6_string();
     test7_string();
+
+    int *arr = new int[10]{1,2,3,4,5,6,7,8,9,10};
     return 0;
-}
+}   
